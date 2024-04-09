@@ -154,9 +154,9 @@ while True:
                     valor = transacao['valor']
                     data = transacao['data']
                     trasac = f"""
-. Tipo: {tipo.upper()}
-. Valor: R$ {float(valor):.2f}
-. Data: {data}
+.    Tipo: {tipo.upper()}
+.    Valor: R$ {float(valor):.2f}
+.    Data: {data}
 ."""
                     extrato_transacoes +=trasac
 
@@ -172,8 +172,8 @@ while True:
 .   Saldo Inicial do dia: R$ {INIT_SALDO:.2f}.             
 .   Total de Depositos: R$ {float(total_depositos):.2f}. 
 .   Total de Saques: R$ {float(total_saques):.2f}.       
-.   Saldo Final = R$ {float(saldo_inicial):.2f}            
-.                                                        
+.              
+.   Saldo Final = R$ {float(saldo_inicial):.2f}                                                    
 ..........................................................
 
 extrato emitido em: {time.strftime('%d/%m/%Y %H:%M:%S')}  
