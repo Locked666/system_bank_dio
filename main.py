@@ -3,13 +3,14 @@ import os
 
 LIMITE_SAQUE_QUANTIDADE = 3
 LIMITE_SAQUE_VALOR = 500
-INIT_SALDO = 1500
+INIT_SALDO = 100
+
 
 
 transacoes_realizadas =  []
-atual_limite_saque_quantidade = 3
-atual_limite_saque_valor = 500
-saldo_inicial =  float(1500)
+atual_limite_saque_quantidade = int(LIMITE_SAQUE_QUANTIDADE)
+atual_limite_saque_valor = float(LIMITE_SAQUE_VALOR)
+saldo_inicial =  float(INIT_SALDO)
 
 menu_principal = f"""
      _____________________________
@@ -51,7 +52,7 @@ while True:
     selecao = input(menu_principal)
     try: 
         if  int(selecao) == 1: #Depositar
-            try :
+            
                 os.system('cls' if os.name == 'nt' else 'clear')
                 valor = float(input("Informe o Valor que deseja Depositar: R$ "))
                 
@@ -79,17 +80,14 @@ while True:
                     print("Valor do depósito não pode ser negativo:")
                     print(input("Pressione 'Enter' para continuar.").strip())
                     continue
-            except:
-                print("Entrada invalida")
-                print(input("Pressione 'Enter' para continuar.").strip())
-                continue
-                    
+
                 
                 
         
         elif int(selecao) == 2 : # Saque
             os.system('cls' if os.name == 'nt' else 'clear')
             valor_saque = float(input("Informe o valor do saque: R$ "))
+            
             
             if valor_saque < 0 :
                 os.system('cls' if os.name == 'nt' else 'clear') 
@@ -110,17 +108,17 @@ while True:
                 continue
             
             
-            if saldo_inicial == 0 :
-                print(f"Saldo atual insuficiente para saque.\n Saldo atual: R$ {saldo_inicial:.2f}.")
+            if valor_saque > saldo_inicial :
+                print(f"Saldo atual insuficiente para saque.")
                 print(input("Pressione 'Enter' para continuar.").strip())
                 continue 
             
-
+                
             atual_limite_saque_quantidade -=1
-            saldo_inicial -= valor
+            saldo_inicial -= valor_saque
             transacao = {
                 "tipo" : "saque",
-                "valor": valor,
+                "valor": valor_saque,
                 "data" : time.strftime('%d/%m/%Y %H:%M:%S')
             }
             transacoes_realizadas.append(transacao)
@@ -222,6 +220,6 @@ extrato emitido em: {time.strftime('%d/%m/%Y %H:%M:%S')}
             print(input("Pressione 'Enter' para continuar.").strip())
             continue
     except:
-        print("informado uma entrada invalida\n Tente novamente")
+        print("informado uma entrada invalida\n Tente novamente Except")
         print(input("Pressione 'Enter' para continuar.").strip())
         continue        
